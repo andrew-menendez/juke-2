@@ -29,7 +29,6 @@ juke.factory('albumFactory', function($http){
   albumObject.fetchAll= function(){
 
       return $http.get('/api/albums/')
-
     };
 
   albumObject.fetchById= function(id){

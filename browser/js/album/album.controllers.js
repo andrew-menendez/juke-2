@@ -70,3 +70,22 @@ juke.controller('AlbumCtrl', function($scope, $rootScope, $log, StatsFactory,alb
   function prev () { skip(-1); };
 
 });
+
+
+
+/// new controller
+
+juke.controller('AlbumnsCtrl', function($scope, $rootScope, $log,albumFactory) {
+
+      albumFactory.fetchAll().then(function(albums){
+        $scope.albums=albums.data;
+        $scope.albums.forEach(function(album){
+            album.imageUrl = '/api/albums/' + album._id + '.image';
+          });
+        console.log($scope.albums);
+
+      })
+});
+
+
+

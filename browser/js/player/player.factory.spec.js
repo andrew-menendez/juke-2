@@ -55,7 +55,7 @@ describe('`PlayerFactory` factory', function () {
 
   });
 
-  xdescribe('#pause', function () {
+  describe('#pause', function () {
 
     it("calls audio's `pause`", function () {
       chai.spy.on(HTMLAudioElement.prototype, 'pause');
@@ -65,7 +65,7 @@ describe('`PlayerFactory` factory', function () {
 
   });
 
-  xdescribe('#resume', function () {
+  describe('#resume', function () {
 
     it("calls audio's `play`", function () {
       chai.spy.on(HTMLAudioElement.prototype, 'play');
@@ -75,7 +75,7 @@ describe('`PlayerFactory` factory', function () {
 
   });
 
-  xdescribe('#isPlaying', function () {
+  describe('#isPlaying', function () {
 
     it('returns false when song is not playing', function () {
       expect(PlayerFactory.isPlaying()).to.equal(false);

@@ -1,6 +1,6 @@
 'use strict';
 
-juke.controller('PlayerCtrl', function ($scope, $rootScope) {
+juke.controller('PlayerCtrl', function ($scope, $rootScope,PlayerFactory) {
 
   // initialize audio player (note this kind of DOM stuff is odd for Angular)
   var audio = document.createElement('audio');
@@ -35,16 +35,18 @@ juke.controller('PlayerCtrl', function ($scope, $rootScope) {
     $scope.playing = false;
   }
   function play (event, song){
-    // stop existing audio (e.g. other song) in any case
-    pause();
-    $scope.playing = true;
-    // resume current song
-    if (song === $scope.currentSong) return audio.play();
-    // enable loading new song
-    $scope.currentSong = song;
-    audio.src = song.audioUrl;
-    audio.load();
-    audio.play();
+
+    PlayerFactory.play(audio,event,song);
+    // // stop existing audio (e.g. other song) in any case
+    // pause();
+    // //$scope.playing = true;
+    // // resume current song
+    // if (song === $scope.currentSong) return audio.play();
+    // // enable loading new song
+    // $scope.currentSong = song;
+    // audio.src = song.audioUrl;
+    // audio.load();
+    // audio.play();
   }
 
   // outgoing events (to Album… or potentially other characters)
