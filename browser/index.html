@@ -27,7 +27,7 @@
       </div>
 
       <div class="col-xs-10">
-        <div  ng-if="false" class="album" ng-controller="AlbumCtrl">
+        <div  ng-if="true" class="album" ng-controller="AlbumCtrl">
           <p>
             <h3>{{ album.name }}</h3>
             <h3>{{ fullDuration | currency }}</h3>
@@ -62,7 +62,7 @@
           </table>
         </div>
 
-        <div ng-if="true" ng-controller="AlbumnsCtrl">
+        <div ng-if="false" ng-controller="AlbumnsCtrl">
           <h3>Albums</h3>
           <div class="row">
             <div ng-repeat="album in albums" class="col-xs-4">
