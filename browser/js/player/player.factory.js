@@ -1,14 +1,24 @@
 'use strict';
 
-juke.factory('PlayerFactory', function($http){
+juke.factory('PlayerFactory', function($http, $rootScope){
   // non-UI logic in here
   var playerObject={};
   var audio = document.createElement('audio');
 
   audio.addEventListener('timeupdate', function () {
+    // var myEval= function(){
+    //   if($scope){
+    //     $scope.$evalAsync();
+    //   } else {
+    //     return null;
+    //   }
+    // }
+
     playerObject.progress =  audio.currentTime / audio.duration;
     // $scope.$digest(); // re-computes current template only (this scope)
-    //$scope.$evalAsync(); // likely best, schedules digest if none happening
+    //playerObject.$evalAsync(); // likely best, schedules digest if none happening
+    //myEval();
+    $rootScope.$evalAsync();
     });
 
   audio.addEventListener('ended', function () {
@@ -31,7 +41,7 @@ juke.factory('PlayerFactory', function($http){
   }
 
   playerObject.play= function(song){
-
+    console.log('play song is: ',song)
     this.pause();
     audio.src = song.audioUrl;
     audio.load();
@@ -97,23 +107,17 @@ juke.factory('PlayerFactory', function($http){
     //console.log(playerObject.currentSong);
     if (playerObject.playing==true){
       //console.log('playing')
-      return true
-
+      return true;
+    } else {
+      return false;
     }
-    else{
-      return false
-    }
-
   }
 
   playerObject.getProgress=function(){
 
-
-    console.log('currentTime',audio.currentTime)
-    console.log('duration',audio.duration);
-    console.log('progress: ',this.progress);
-
-
+    // console.log('currentTime',audio.currentTime)
+    // console.log('duration',audio.duration);
+    // console.log('progress: ',this.progress);
     return this.progress;
 
   }

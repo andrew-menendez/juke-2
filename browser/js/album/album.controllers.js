@@ -35,7 +35,8 @@ juke.controller('AlbumCtrl', function($scope, $rootScope, $log, StatsFactory,alb
 
   //main toggle
   $scope.toggle = function (song) {
-    if ($scope.playing && song === $scope.currentSong) {
+    console.log(song);
+    if (PlayerFactory.isPlaying() && song === PlayerFactory.getCurrentSong()) {
       $rootScope.$broadcast('pause');
     } else $rootScope.$broadcast('play', song);
   };
@@ -45,6 +46,10 @@ juke.controller('AlbumCtrl', function($scope, $rootScope, $log, StatsFactory,alb
   $scope.$on('play', play);
   $scope.$on('next', next);
   $scope.$on('prev', prev);
+
+   $scope.getCurrentSong= function(){
+    return PlayerFactory.getCurrentSong();
+  }
 
   // functionality
   function pause () {
@@ -79,6 +84,8 @@ juke.controller('AlbumCtrl', function($scope, $rootScope, $log, StatsFactory,alb
   }
 
 });
+
+
 
 
 
